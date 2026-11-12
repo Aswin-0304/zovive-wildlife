@@ -1,0 +1,28 @@
+# Temporary logs
+*.log
+*.txt
+
+# Vite cache
+frontend/.vite/
+
+# Build files
+node_modules/
+dist/
+target/
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Backups
+_backups/
+_reports/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

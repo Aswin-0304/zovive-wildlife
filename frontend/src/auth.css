@@ -1,0 +1,369 @@
+/* Cinematic sign-in experience */
+.auth-login-screen{position:relative;isolation:isolate;min-height:100svh;width:100%;overflow:hidden;display:grid;place-items:center;background:#07130e;color:#edf6ed}
+.auth-forest-video,.auth-forest-shade,.auth-forest-grain{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3}
+.auth-forest-video{filter:saturate(.82) brightness(.68);transform:scale(1.035)}
+.auth-forest-shade{z-index:-2;background:linear-gradient(90deg,rgba(2,15,11,.94) 0%,rgba(3,20,15,.84) 34%,rgba(4,20,14,.48) 67%,rgba(4,18,13,.58) 100%),linear-gradient(0deg,rgba(2,12,9,.75),transparent 42%,rgba(2,12,9,.3))}
+.auth-forest-grain{z-index:-1;opacity:.13;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.23'/%3E%3C/svg%3E");mix-blend-mode:soft-light}
+.auth-brand{position:absolute;top:31px;left:clamp(24px,5vw,76px);z-index:5;display:flex;align-items:center;gap:12px}.auth-brand-mark{width:42px;height:42px;border-radius:14px 9px 14px 9px;display:grid;place-items:center;background:linear-gradient(145deg,#c4ef92,#55c774);color:#102318;font:800 25px var(--display);box-shadow:0 6px 28px #77d97652}.auth-brand b{display:block;font:750 20px var(--display);letter-spacing:1.8px}.auth-brand small{display:block;margin-top:3px;color:#a8c0ac;font:9px var(--mono);letter-spacing:1.5px}
+.auth-sound-toggle{position:absolute;top:33px;right:clamp(24px,5vw,76px);z-index:5;display:flex;align-items:center;gap:8px;padding:9px 12px!important;border:1px solid #d8f3df39!important;border-radius:22px!important;background:#071e1ac7!important;color:#d9eade!important;font:8px var(--mono)!important;letter-spacing:.7px;backdrop-filter:blur(15px)}.auth-sound-toggle span{font-size:13px;color:#b7eea6}
+.auth-scene-layout{position:relative;width:min(1250px,100%);min-height:min(790px,100svh);padding:105px clamp(24px,5vw,76px) 80px;display:grid;grid-template-columns:minmax(340px,440px) minmax(360px,1fr);align-items:center;gap:4vw}
+.auth-card{position:relative;z-index:3;width:100%;padding:clamp(25px,3vw,38px);border:1px solid #d4f1dd38;border-radius:20px;background:linear-gradient(140deg,rgba(13,41,31,.84),rgba(7,26,23,.79));box-shadow:0 28px 90px #0008,inset 0 1px #ffffff17;backdrop-filter:blur(28px);animation:auth-card-arrive .8s .1s cubic-bezier(.2,.8,.2,1) both}
+.auth-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px}.auth-eyebrow{display:flex;align-items:center;gap:8px;color:#c4d8c6;font:9px var(--mono);letter-spacing:1.2px}.auth-eyebrow i,.auth-video-label i{width:6px;height:6px;border-radius:50%;background:#a9ef88;box-shadow:0 0 11px #a9ef88;animation:auth-pulse 2s ease-in-out infinite}.auth-encryption{color:#82a491;font:8px var(--mono)}.auth-emblem{width:41px;height:41px;margin-top:28px;border:1px solid #8cdda854;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,#1a5841,#14362f);color:#b9ef96;font-size:23px;box-shadow:0 8px 26px #0a4d354d}.auth-card h1{margin:17px 0 7px;color:#f3f7f2;font:650 29px var(--display);letter-spacing:-1.1px}.auth-lead{margin:0 0 25px;color:#a3b8a9;font-size:12px;line-height:1.55}
+.auth-field{display:grid;gap:8px;margin:16px 0;color:#d5e1d7;font-size:10px;font-weight:600}.auth-input-wrap{height:47px;display:flex;align-items:center;gap:10px;padding:0 12px;border:1px solid #b0d9c42d;border-radius:9px;background:#061813a8;transition:border-color .2s,box-shadow .2s,background .2s}.auth-input-wrap:focus-within{border-color:#91dda5ad;box-shadow:0 0 0 3px #4cad6d22;background:#09211bbf}.auth-input-wrap>span{color:#90bea1;font-size:14px}.auth-input-wrap input{width:100%;min-width:0;border:0!important;outline:0;background:transparent!important;box-shadow:none!important;color:#f0f6f0;padding:0!important;font-size:11px}.auth-input-wrap input::placeholder{color:#708578}.auth-show-password{flex:none;border:0!important;background:transparent!important;color:#a9d897!important;padding:4px!important;font-size:9px!important}.auth-form-options{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:17px 0 18px}.auth-remember{display:flex;align-items:center;gap:8px;color:#afbeb2;font-size:10px;cursor:pointer}.auth-remember input{width:14px;height:14px;margin:0;accent-color:#92d987}.auth-forgot{border:0!important;background:transparent!important;color:#b8e39b!important;padding:4px!important;font-size:10px!important}.auth-submit{width:100%;min-height:47px;display:flex!important;align-items:center;justify-content:space-between;gap:8px;padding:0 15px!important;border:1px solid #b8f48c!important;border-radius:9px!important;background:linear-gradient(105deg,#a8e77f,#69d883)!important;color:#092319!important;font-size:11px!important;font-weight:750!important;box-shadow:0 7px 24px #5de17336,inset 0 1px #fff9;transition:filter .2s,transform .2s,box-shadow .2s}.auth-submit:hover:not(:disabled){filter:brightness(1.06);transform:translateY(-1px);box-shadow:0 10px 30px #5de17352}.auth-submit>span:last-child{font-size:17px}.auth-submit:disabled{opacity:.57;cursor:not-allowed;transform:none}.auth-spinner{width:14px;height:14px;border:2px solid #143c27;border-top-color:transparent;border-radius:50%;animation:auth-spin .7s linear infinite}.auth-error,.auth-info{margin:0 0 13px;padding:10px 11px;border:1px solid #f2978873;border-radius:8px;background:#401d1b84;color:#ffd0c6;font-size:10px;line-height:1.5}.auth-connection{display:grid;gap:7px}.auth-connection button{justify-self:start;padding:4px 8px!important;background:#ffffff10!important;border:1px solid #ffd0c62e!important;border-radius:6px!important;color:#ffe0d8!important;font-size:9px!important}.auth-info{border-color:#9fdc9b48;background:#12352b8c;color:#cde8c5}.auth-card-foot{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:20px;padding-top:14px;border-top:1px solid #ffffff17;color:#91a89a;font:8px var(--mono)}.auth-card-foot b{color:#73c886}.auth-secure-icon{color:#a9e896;font-size:13px}
+.officer-arrival{position:relative;z-index:2;width:100%;height:min(690px,76svh);min-height:500px;align-self:center;animation:auth-scene-fade 1.2s .2s ease both}.officer-arrival svg{width:100%;height:100%;overflow:visible}.arrival-canopy{filter:drop-shadow(0 8px 10px #0008)}.arrival-rope-shadow{fill:none;stroke:#0009;stroke-width:10;stroke-linecap:round;filter:blur(5px)}.arrival-rope{fill:none;stroke:url(#rope-green);stroke-width:4;stroke-linecap:round;stroke-dasharray:820;stroke-dashoffset:820;filter:url(#rope-glow);animation:rope-deploy 4.9s .35s cubic-bezier(.18,.72,.2,1) forwards}.rope-anchor{fill:#a6f283;stroke:#ecffd0;stroke-width:3;filter:url(#rope-glow);opacity:0;animation:anchor-flash .5s .28s ease forwards}.arrival-officer{opacity:0;transform-box:view-box;transform-origin:290px 330px;animation:officer-rappel 5.5s .62s cubic-bezier(.21,.74,.18,1) forwards;filter:drop-shadow(0 12px 9px #0009)}.arrival-ridge{fill:#14281d;stroke:#79b867;stroke-opacity:.4;stroke-width:2}.arrival-ridge-back{fill:#0b1c15;opacity:.84}.landing-shadow{fill:#0008;filter:url(#arrival-shadow);transform-box:fill-box;transform-origin:center;animation:landing-shadow .6s 4.7s ease-out both}.landing-ring{fill:none;stroke:#8be78a;stroke-width:2;opacity:0;animation:landing-pulse 1.1s 4.72s ease-out both}.arrival-glow{fill:none;stroke:#a5fa8c;stroke-width:3;filter:url(#rope-glow);opacity:0;animation:landing-glow .6s 4.65s ease-out both}.arrival-caption{position:absolute;right:3%;bottom:5%;display:flex;align-items:center;gap:8px;color:#d1e6d2;font:8px var(--mono);letter-spacing:1px;text-shadow:0 2px 9px #000}.arrival-caption i{width:6px;height:6px;border-radius:50%;background:#9fed87;box-shadow:0 0 10px #9fed87}.arrival-caption span{color:#8fc393}.arrival-replay{position:absolute;right:3%;top:4%;width:30px;height:30px;padding:0!important;border:1px solid #d9f5df49!important;border-radius:50%!important;background:#09231c99!important;color:#c5e8bd!important;font-size:17px!important;backdrop-filter:blur(8px)}
+.auth-video-label{position:absolute;left:clamp(24px,5vw,76px);bottom:64px;z-index:4;display:flex;align-items:center;gap:8px;color:#b4c9b8;font:8px var(--mono);letter-spacing:.75px}.auth-video-label span{color:#80a589}.auth-footer{position:absolute;left:clamp(24px,5vw,76px);right:clamp(24px,5vw,76px);bottom:24px;z-index:4;display:flex;justify-content:space-between;gap:20px;color:#809487;font:8px var(--mono);letter-spacing:.9px}.auth-footer-credit{letter-spacing:0}.auth-footer-credit a{color:#a8c99e;text-decoration:none}.auth-footer-credit a:hover{text-decoration:underline}
+@keyframes rope-deploy{0%{stroke-dashoffset:820}48%{stroke-dashoffset:300}100%{stroke-dashoffset:0}}@keyframes officer-rappel{0%{opacity:0;transform:translate(128px,-158px) rotate(-15deg)}12%{opacity:1}38%{transform:translate(93px,-103px) rotate(12deg)}65%{transform:translate(35px,0) rotate(-8deg)}83%{transform:translate(-8px,118px) rotate(6deg)}91%{transform:translate(-6px,105px) rotate(-3deg)}100%{opacity:1;transform:translate(-6px,112px) rotate(0)}}@keyframes anchor-flash{to{opacity:1}}@keyframes landing-shadow{from{opacity:.3;transform:scale(.4)}to{opacity:.9;transform:scale(1.25)}}@keyframes landing-pulse{0%{opacity:.85;transform:scale(.45)}100%{opacity:0;transform:scale(1.8)}}@keyframes landing-glow{0%{opacity:.8}100%{opacity:0}}@keyframes auth-card-arrive{from{opacity:0;transform:translateY(18px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}@keyframes auth-scene-fade{from{opacity:0}to{opacity:1}}@keyframes auth-pulse{50%{opacity:.45;box-shadow:0 0 3px #a9ef88}}@keyframes auth-spin{to{transform:rotate(360deg)}}
+@media(max-width:900px){.auth-scene-layout{grid-template-columns:minmax(320px,420px) 1fr;gap:0;padding-left:25px;padding-right:25px}.officer-arrival{width:100%;min-width:340px;opacity:.82;transform:translateX(-6%)}.auth-card{z-index:3;background:linear-gradient(140deg,rgba(8,33,26,.94),rgba(6,25,22,.91))}.auth-footer,.auth-video-label{left:25px}.auth-sound-toggle{right:25px}}
+@media(max-width:680px){.auth-login-screen{min-height:100svh;align-items:start}.auth-brand{top:17px;left:18px}.auth-brand-mark{width:36px;height:36px}.auth-brand b{font-size:17px}.auth-brand small{font-size:7px}.auth-sound-toggle{top:18px;right:17px;padding:7px 9px!important;font-size:7px!important}.auth-scene-layout{width:100%;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:80px 17px 92px}.auth-card{width:min(420px,100%);padding:25px 22px;backdrop-filter:blur(25px)}.auth-card h1{font-size:26px}.auth-lead{font-size:11px}.officer-arrival{position:absolute;right:-115px;top:5%;width:90%;height:72%;min-height:420px;opacity:.32;pointer-events:none}.auth-video-label{left:18px;right:18px;bottom:63px;font-size:6px;letter-spacing:.4px}.auth-footer{left:18px;right:18px;bottom:18px;flex-direction:column;gap:5px;font-size:7px}.auth-footer-credit{display:none}.arrival-caption,.arrival-replay{display:none}}
+@media(prefers-reduced-motion:reduce){.auth-login-screen *,.auth-login-screen *::before,.auth-login-screen *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}.arrival-rope{stroke-dashoffset:0}.arrival-officer{opacity:1;transform:translate(-6px,112px)}.rope-anchor{opacity:1}.landing-shadow,.landing-ring,.arrival-glow{opacity:.5}}
+
+/* Photoreal rendered scene replaces the flat vector ranger. */
+.officer-arrival{isolation:isolate;overflow:hidden;border:1px solid #c8f2d525;border-radius:22px;box-shadow:0 24px 90px #0008,inset 0 0 0 1px #d3f6dc12;background:#091c15}
+.arrival-render{position:absolute;inset:0;overflow:hidden;animation:arrival-camera-in 1.8s cubic-bezier(.2,.72,.2,1) both}
+.arrival-render img.arrival-forest{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:64% 48%;filter:saturate(.94) contrast(1.08) brightness(.78);transform:scale(1.035);animation:arrival-dolly 18s ease-in-out 1.8s infinite alternate}
+.arrival-render img.arrival-ranger{position:absolute;z-index:1;right:0;top:4%;width:47%;height:91%;object-fit:contain;object-position:center;filter:drop-shadow(0 18px 18px #0008);transform-origin:52% 12%;animation:scene-ranger-sway 4.6s ease-in-out infinite alternate}
+.arrival-vignette{position:absolute;inset:0;background:linear-gradient(90deg,#06140f9c 0%,#06140f40 28%,transparent 62%),linear-gradient(0deg,#06110ed9 0%,transparent 28%,#0717102b 100%),radial-gradient(ellipse at 67% 47%,transparent 24%,#03100d66 100%);pointer-events:none}
+.arrival-anchor{position:absolute;top:21%;right:28%;width:15px;height:15px;border:2px solid #e0ffc4;border-radius:50%;background:#a6fb85;box-shadow:0 0 10px 4px #8cf27899,0 0 30px 9px #56d67344;animation:arrival-anchor-pulse 2.4s ease-in-out infinite}
+.arrival-anchor i{position:absolute;inset:-8px;border:1px solid #b9ff9b80;border-radius:50%;animation:arrival-anchor-ring 2.4s ease-out infinite}
+.arrival-ground-light{position:absolute;left:51%;bottom:10%;width:36%;height:12%;background:#9afa7826;filter:blur(28px);border-radius:50%;pointer-events:none}
+.arrival-caption{z-index:2;padding:10px 13px;border:1px solid #d8f5df35;border-radius:30px;background:#061a14a8;backdrop-filter:blur(12px)}
+.arrival-replay{z-index:3;cursor:pointer}
+.auth-connection{font-size:10px}
+.auth-connection strong{font-weight:750;color:#ffe2da}
+.auth-connection span{color:#f2c9c0}
+.auth-connection button{margin-top:2px}
+@keyframes arrival-camera-in{0%{opacity:0;transform:translateY(36px) scale(1.04)}62%{opacity:1;transform:translateY(-5px) scale(1)}82%{transform:translateY(2px)}100%{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes arrival-dolly{from{transform:scale(1.035) translate3d(1%,0,0)}to{transform:scale(1.1) translate3d(-1.5%,-.6%,0)}}
+@keyframes arrival-anchor-pulse{50%{box-shadow:0 0 16px 7px #8cf278b3,0 0 36px 13px #56d67366}}
+@keyframes arrival-anchor-ring{0%{opacity:.8;transform:scale(.55)}100%{opacity:0;transform:scale(2.4)}}
+@keyframes scene-ranger-sway{from{transform:translate3d(1%,0,0) rotate(-1.4deg)}to{transform:translate3d(-1%,1.2%,0) rotate(1.4deg)}}
+@keyframes auth-ranger-flight{0%{transform:translate3d(-57vw,-50%,0) rotate(-12deg) scale(.72);opacity:0}8%{opacity:1}30%{transform:translate3d(-24vw,-52%,0) rotate(5deg) scale(.88)}58%{transform:translate3d(22vw,-50%,0) rotate(-3deg) scale(1)}82%{transform:translate3d(67vw,-48%,0) rotate(3deg) scale(.92);opacity:1}100%{transform:translate3d(118vw,-50%,0) rotate(0) scale(.75);opacity:0}}
+@keyframes auth-flight-light{0%{opacity:0;transform:scale(.5)}18%{opacity:.9;transform:scale(1)}90%{opacity:.7;transform:scale(1.1)}100%{opacity:0;transform:scale(1.3)}}
+@media(max-width:900px){.officer-arrival{border-radius:18px}.arrival-render img.arrival-forest{object-position:65% center}.arrival-render img.arrival-ranger{width:52%;height:88%;right:-2%}}
+@media(max-width:680px){.officer-arrival{border:0;border-radius:0}.arrival-render img.arrival-forest{object-position:63% center}.arrival-render img.arrival-ranger{width:58%;height:78%;right:-8%;top:9%}.arrival-anchor{top:19%;right:27%}}
+.auth-flight-transition{position:fixed;z-index:20;inset:0;overflow:hidden;display:grid;place-items:center;background:radial-gradient(ellipse at 57% 50%,#173c2bd9 0%,#071711f5 55%,#03100dfc 100%);animation:auth-transition-backdrop .45s ease-out both}
+.auth-flight-transition::before{position:absolute;inset:0;content:"";background-image:url('/images/forest-banyan-backdrop.png');background-position:center;background-size:cover;opacity:.19;filter:blur(3px) brightness(.55);transform:scale(1.04)}
+.auth-flight-transition>img{position:absolute;z-index:2;left:50%;top:50%;width:clamp(300px,38vw,570px);height:min(98vh,940px);object-fit:contain;filter:drop-shadow(0 22px 34px #07140ca8);animation:auth-ranger-flight 2.15s cubic-bezier(.18,.66,.22,1) both}
+.auth-flight-light{position:absolute;z-index:1;left:50%;top:50%;width:min(72vw,980px);height:min(58vh,540px);border-radius:50%;background:radial-gradient(ellipse,#8fe58b55 0%,#4ecf8140 26%,transparent 70%);filter:blur(24px);animation:auth-flight-light 2.1s ease-out both}
+.auth-flight-copy{position:absolute;z-index:3;left:50%;top:18%;display:flex;align-items:center;gap:10px;transform:translateX(-50%);white-space:nowrap;color:#e2f2df;font:clamp(8px,.8vw,11px) var(--mono);letter-spacing:1.7px;text-shadow:0 2px 18px #000;animation:auth-flight-copy-in .4s .16s ease-out both}
+.auth-flight-copy i{width:8px;height:8px;border-radius:50%;background:#abf58d;box-shadow:0 0 18px #9aff80;animation:auth-pulse 1s infinite}.auth-flight-copy span{color:#8fc393}
+@keyframes auth-transition-backdrop{from{opacity:0}to{opacity:1}}@keyframes auth-flight-copy-in{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
+@media(max-width:680px){.auth-flight-transition>img{width:min(90vw,430px);height:82vh}.auth-flight-copy{top:14%;letter-spacing:1px;font-size:8px}}
+@media(prefers-reduced-motion:reduce){.arrival-render,.arrival-render img,.arrival-anchor,.arrival-anchor i{animation:none!important}.arrival-render img.arrival-forest{transform:scale(1.04)}.arrival-render img.arrival-ranger{transform:none}.auth-flight-transition,.auth-flight-transition *{animation:none!important}.auth-flight-transition>img{display:none}}
+.auth-registration-help{margin-top:13px;text-align:center}.auth-registration-help button{border:0!important;background:transparent!important;color:#b5d99d!important;padding:5px!important;font-size:10px!important}.auth-registration-help p{margin:7px 0 0;padding:10px 12px;border:1px solid #a6db9d3c;border-radius:8px;background:#0b281eaa;color:#c6d7c9;text-align:left;font-size:10px;line-height:1.55}
+.account-admin-panel{max-width:900px;margin-top:17px;padding:22px!important}.account-admin-help{margin:0 0 18px;color:#9eafa4;font-size:11px;line-height:1.6}.account-create-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.account-create-form label{display:grid;gap:7px;color:#b7c8bb;font-size:10px;font-weight:600}.account-create-form input,.account-create-form select{width:100%;height:40px;padding:0 11px;border:1px solid #91c6a833;border-radius:8px;background:#061a14;color:#edf5ed;font-size:11px;outline:none}.account-create-form input:focus,.account-create-form select:focus{border-color:#91dda5ad;box-shadow:0 0 0 3px #4cad6d22}.account-create-form input::placeholder{color:#75897d}.account-create-button{align-self:end;height:40px;padding:0 15px;border:1px solid #b8f48c;border-radius:8px;background:linear-gradient(105deg,#a8e77f,#69d883);color:#092319;font-size:11px;font-weight:750;cursor:pointer}.account-create-button:disabled{opacity:.65;cursor:wait}.account-feedback,.account-roster-empty{margin-top:12px;padding:10px 12px;border:1px solid #9edb9b42;border-radius:8px;background:#10281e;color:#cde8c5;font-size:10px;line-height:1.5}.account-feedback-error{border-color:#f2978873;background:#401d1b84;color:#ffd0c6}.account-roster-heading{display:flex;align-items:center;justify-content:space-between;margin-top:22px;padding:0 0 9px;border-bottom:1px solid #ffffff16;color:#e3eee4;font-size:11px}.account-roster-heading span{color:#9fcca0;font:10px var(--mono)}.account-roster{display:grid}.account-roster-row{display:grid;grid-template-columns:30px minmax(0,1fr) auto;align-items:center;gap:10px;padding:11px 2px;border-bottom:1px solid #ffffff0d}.account-roster-row>span:nth-child(2){display:grid;gap:3px;min-width:0}.account-roster-row b{overflow:hidden;text-overflow:ellipsis;font-size:11px}.account-roster-row small{overflow:hidden;text-overflow:ellipsis;color:#899b8e;font-size:10px}.account-roster-row em{padding:5px 8px;border:1px solid #9ad79736;border-radius:20px;color:#b9dcaa;font-size:9px;font-style:normal;white-space:nowrap}.account-roster-empty{color:#adbbb0}
+@media(max-width:680px){.account-create-form{grid-template-columns:1fr}.account-admin-panel{padding:17px!important}.account-roster-row{grid-template-columns:30px minmax(0,1fr)}.account-roster-row em{grid-column:2;justify-self:start}}
+.auth-login-screen{display:block;min-height:100svh;padding:0;background:#07130e;}
+.auth-forest-shade{z-index:0;background:linear-gradient(90deg,rgba(2,14,10,.76) 0%,rgba(3,19,14,.64) 33%,rgba(4,20,14,.22) 70%,rgba(4,18,13,.24) 100%),linear-gradient(0deg,rgba(2,12,9,.64),transparent 40%,rgba(2,12,9,.17));pointer-events:none}
+.auth-forest-grain{z-index:0;pointer-events:none}
+.auth-brand{z-index:4}
+.auth-scene-layout{z-index:2;width:min(1540px,100%);min-height:100svh;margin:0 auto;padding:105px clamp(24px,5vw,76px) 84px;grid-template-columns:minmax(340px,440px) minmax(370px,1fr);gap:3vw}
+.officer-arrival{z-index:1;width:100%;height:min(840px,90svh);min-height:580px;align-self:center;overflow:visible;border:0;border-radius:0;background:transparent;box-shadow:none;animation:auth-scene-fade 1.1s .15s both}
+.arrival-render{inset:0;overflow:visible;background:transparent;animation:none}
+.arrival-render img.arrival-ranger{top:3%;right:0;width:64%;height:94%;object-position:center;filter:drop-shadow(0 20px 24px #0009);animation:scene-ranger-sway 4.8s ease-in-out infinite alternate}
+.arrival-anchor{top:13%;right:25%;z-index:2}
+.arrival-caption{right:2%;bottom:2%}
+.auth-warming .auth-scene-layout{visibility:hidden;opacity:0}
+.auth-intro-transition{position:fixed;z-index:12;inset:0;overflow:hidden;background:linear-gradient(180deg,#06130e1a,#04100d38);pointer-events:none}
+.auth-intro-brand{position:absolute;top:31px;left:clamp(24px,5vw,76px);z-index:3;display:flex;align-items:center;gap:12px}
+.auth-intro-brand b{display:block;color:#f1f7ef;font:750 20px var(--display);letter-spacing:1.8px}.auth-intro-brand small{display:block;margin-top:3px;color:#a8c0ac;font:9px var(--mono);letter-spacing:1.5px}
+.auth-intro-transition>img{position:absolute;z-index:2;left:50%;top:50%;width:clamp(300px,38vw,570px);height:min(98vh,940px);object-fit:contain;filter:drop-shadow(0 22px 34px #07140ca8);animation:auth-ranger-flight 2.15s cubic-bezier(.18,.66,.22,1) both}
+.auth-intro-transition .auth-flight-light{z-index:1}
+.auth-intro-transition .auth-flight-copy{top:auto;bottom:10%;}
+@media(max-width:900px){.auth-scene-layout{grid-template-columns:minmax(320px,420px) minmax(300px,1fr);gap:0;padding-left:25px;padding-right:25px}.officer-arrival{min-width:0;height:78svh;min-height:480px}.arrival-render img.arrival-ranger{width:76%;right:-4%}}
+@media(max-width:680px){.auth-login-screen{background-position:58% center;background-attachment:scroll}.auth-scene-layout{padding:80px 17px 92px}.officer-arrival{min-width:0;min-height:420px}.arrival-render img.arrival-ranger{width:88%;height:76%;right:-13%;top:8%}.arrival-caption{display:none}.auth-intro-brand{top:17px;left:18px}.auth-intro-brand .auth-brand-mark{width:36px;height:36px}.auth-intro-brand b{font-size:17px}.auth-intro-brand small{font-size:7px}.auth-intro-transition>img{width:min(90vw,430px);height:82vh}.auth-intro-transition .auth-flight-copy{bottom:11%;letter-spacing:.65px;font-size:7px}}
+@media(prefers-reduced-motion:reduce){.auth-intro-transition{display:none}.auth-warming .auth-scene-layout{visibility:visible;opacity:1}}
+@keyframes auth-root-travel{from{transform:translate3d(-140vw,-50%,0)}to{transform:translate3d(75vw,-50%,0)}}
+@keyframes auth-root-swing{0%{transform:rotate(-7deg)}12.5%{transform:rotate(-5deg)}25%{transform:rotate(0)}37.5%{transform:rotate(5deg)}50%{transform:rotate(7deg)}62.5%{transform:rotate(5deg)}75%{transform:rotate(0)}87.5%{transform:rotate(-5deg)}100%{transform:rotate(-7deg)}}
+.arrival-swing{position:absolute;z-index:1;top:-5%;right:0;width:64%;height:102%;transform-origin:52% 4%;animation:scene-ranger-sway 3.7s cubic-bezier(.42,0,.58,1) infinite alternate;will-change:transform}
+.arrival-swing img.arrival-ranger{position:static;display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 12px 18px #07140c88)}
+.arrival-swing{animation-name:auth-root-swing;animation-duration:3.7s;animation-timing-function:linear;animation-iteration-count:infinite;animation-direction:normal}
+.auth-flight-track{position:absolute;z-index:2;left:50%;top:50%;width:clamp(280px,38vw,570px);height:min(98vh,940px);transform:translate3d(-140vw,-50%,0);animation:auth-root-travel 3.2s linear both;will-change:transform}
+.auth-flight-track img{display:block;width:100%;height:100%;object-fit:contain;transform-origin:52% 4%;animation:auth-root-swing 3.2s linear infinite;filter:drop-shadow(0 18px 25px #07140ca8)}
+.auth-intro-transition .auth-flight-track{width:clamp(300px,38vw,570px);height:min(98vh,940px)}
+@media(max-width:900px){.arrival-swing{width:76%;right:-4%}}
+@media(max-width:680px){.arrival-swing{width:88%;height:88%;right:-13%;top:-5%}.auth-intro-transition .auth-flight-track{width:min(90vw,430px);height:82vh}}
+@media(prefers-reduced-motion:reduce){.auth-intro-transition{display:none}.auth-warming .auth-scene-layout{visibility:visible;opacity:1}.auth-flight-track,.auth-flight-track img,.arrival-swing{animation:none!important}.arrival-swing{transform:none}}
+.auth-single-scene{position:absolute;z-index:-1;inset:-18%;width:136%;height:136%;object-fit:cover;object-position:center;transform-origin:75% 45%;pointer-events:none;will-change:transform}
+.auth-scene-intro{animation:auth-integrated-arrival 3.2s linear both}
+.auth-scene-idle{animation:auth-integrated-breathe 26s ease-in-out 1.5s infinite alternate}
+.auth-flight-transition{background:#07130e;}
+.auth-flight-transition::before{display:none}
+.auth-success-scene{position:absolute;inset:-18%;width:136%;height:136%;object-fit:cover;object-position:center;transform-origin:75% 45%;animation:auth-integrated-exit 2.9s cubic-bezier(.35,.05,.2,1) both;will-change:transform,opacity}
+@keyframes auth-integrated-arrival{from{transform:translate3d(-20vw,0,0) scale(1.05)}to{transform:translate3d(0,0,0) scale(1)}}
+@keyframes auth-integrated-breathe{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(1vw,-.35vh,0) scale(1.025)}}
+@keyframes auth-integrated-exit{0%{transform:translate3d(0,0,0) scale(1.03);opacity:1}80%{opacity:1}100%{transform:translate3d(20vw,-.7vh,0) scale(1.13);opacity:0}}
+@media(max-width:680px){.auth-single-scene,.auth-success-scene{inset:-12%;width:124%;height:124%;transform-origin:73% 45%}.auth-scene-intro{animation-name:auth-integrated-arrival-mobile}.auth-scene-idle{animation-name:auth-integrated-breathe-mobile}}
+@keyframes auth-integrated-arrival-mobile{from{transform:translate3d(-10vw,0,0) scale(1.05)}to{transform:translate3d(0,0,0) scale(1)}}
+@keyframes auth-integrated-breathe-mobile{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(.6vw,-.2vh,0) scale(1.02)}}
+@media(prefers-reduced-motion:reduce){.auth-single-scene,.auth-success-scene{animation:none!important;transform:none}.auth-flight-transition{animation:none!important}}
+.auth-forest-plate{position:absolute;z-index:-1;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none}
+.auth-forest-shade{z-index:0;background:linear-gradient(90deg,rgba(2,14,10,.82) 0%,rgba(3,19,14,.68) 31%,rgba(4,20,14,.24) 64%,rgba(4,18,13,.2) 100%),linear-gradient(0deg,rgba(2,12,9,.7),transparent 42%,rgba(2,12,9,.19));pointer-events:none}
+.auth-forest-grain{z-index:0;pointer-events:none}
+.auth-arrival-stage{position:absolute;z-index:1;inset:0;overflow:hidden;pointer-events:none}
+.auth-arrival-person{position:absolute;top:0;right:18vw;height:105svh;width:auto;max-width:none;object-fit:contain;object-position:top center;transform-origin:77.5% 1%;filter:drop-shadow(0 15px 22px rgba(1,10,5,.48)) saturate(.94);will-change:transform,filter}
+.auth-arrival-intro{animation:auth-rooted-arrival 3.35s cubic-bezier(.34,.01,.24,1) both}
+.auth-arrival-idle{transform:rotate(10deg);animation:auth-rooted-idle 5.4s ease-in-out infinite alternate}
+.auth-warming .auth-scene-layout{visibility:hidden;opacity:0}
+@keyframes auth-rooted-arrival{0%{transform:rotate(-37deg)}12%{transform:rotate(-35deg)}63%{transform:rotate(22deg)}79%{transform:rotate(7deg)}90%{transform:rotate(16deg)}100%{transform:rotate(10deg)}}
+@keyframes auth-rooted-idle{from{transform:rotate(8deg) translateY(0)}to{transform:rotate(14deg) translateY(-5px)}}
+.auth-flight-transition{display:block;background:#07130e;animation:auth-transition-backdrop 2.8s ease both}
+.auth-flight-transition::before{display:none}
+.auth-transition-forest,.auth-transition-shade{position:absolute;inset:0;width:100%;height:100%}
+.auth-transition-forest{object-fit:cover;object-position:center}
+.auth-transition-shade{background:linear-gradient(90deg,rgba(2,14,10,.68),rgba(3,19,14,.26) 58%,rgba(4,18,13,.14)),linear-gradient(0deg,rgba(2,12,9,.48),transparent 50%)}
+.auth-transition-officer{position:absolute;z-index:2;top:0;right:18vw;height:105svh;width:auto;max-width:none;object-fit:contain;object-position:top center;transform-origin:77.5% 1%;filter:drop-shadow(0 18px 25px rgba(1,10,5,.5));will-change:transform,opacity;animation:auth-rooted-exit 2.8s cubic-bezier(.34,.01,.24,1) both}
+.auth-flight-copy{z-index:3}
+@keyframes auth-rooted-exit{0%{transform:rotate(-37deg);opacity:1}12%{transform:rotate(-35deg);opacity:1}59%{transform:rotate(23deg);opacity:1}75%{transform:rotate(8deg);opacity:1}88%{transform:rotate(15deg);opacity:.84}100%{transform:rotate(15deg);opacity:0}}
+@media(max-width:900px){.auth-arrival-person,.auth-transition-officer{right:15vw;height:100svh}}
+@media(max-width:680px){.auth-forest-plate,.auth-transition-forest{object-position:60% center}.auth-arrival-person,.auth-transition-officer{right:-3vw;height:88svh;top:3vh}.auth-arrival-person{opacity:.88}.auth-scene-layout{z-index:2}.auth-card{background:linear-gradient(140deg,rgba(8,33,26,.9),rgba(6,25,22,.88))}.auth-flight-copy{top:15%;font-size:7px;letter-spacing:.8px}}
+@media(prefers-reduced-motion:reduce){.auth-arrival-person,.auth-transition-officer{animation:none!important;transform:rotate(10deg)}.auth-warming .auth-scene-layout{visibility:visible;opacity:1}.auth-flight-transition{animation:none!important}}
+
+/* The reference scene keeps the banyan, original roots, character and waist rope together. */
+.auth-scene-layout{position:absolute;inset:0;z-index:4;width:100%;min-height:100svh;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;pointer-events:none}
+.auth-card{width:min(510px,calc(100vw - 34px))}
+.auth-login-card{animation:none!important;opacity:0;visibility:hidden;pointer-events:none;will-change:transform,opacity;background:linear-gradient(140deg,rgba(20,56,42,.93),rgba(10,34,29,.92));border-color:#d4f1dd42;box-shadow:0 28px 90px #0007,0 0 0 1px #0000001f,inset 0 1px #ffffff1c;backdrop-filter:blur(26px) saturate(1.15)}
+.auth-card-content{opacity:0;will-change:opacity}
+.auth-card-visible{visibility:visible;pointer-events:auto}
+.auth-card-pending{visibility:hidden;pointer-events:none}
+.auth-forest-plate{z-index:-2}
+.auth-canopy-canvas{position:absolute;z-index:0;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+/* Foreground layer above the login card: the ranger sits on the card here. Clicks pass through to the form. */
+.auth-canopy-front{position:absolute;z-index:5;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.auth-forest-shade{z-index:1;background:linear-gradient(90deg,rgba(2,14,10,.12),rgba(3,19,14,.08) 60%,rgba(4,18,13,.14)),linear-gradient(0deg,rgba(2,12,9,.16),transparent 42%,rgba(2,12,9,.1))}
+.auth-forest-grain{z-index:1;pointer-events:none}
+.auth-scene-layout{z-index:4}
+.auth-login-card{z-index:4}
+.auth-card-content{transition:opacity .35s ease}
+.auth-brand,.auth-video-label,.auth-footer{visibility:hidden!important;opacity:0!important}
+.auth-arrived .auth-brand{visibility:visible!important;opacity:1!important}
+.auth-warming .auth-brand,.auth-warming .auth-video-label,.auth-warming .auth-footer{visibility:hidden;opacity:0}
+.auth-warming .auth-scene-layout{visibility:visible;opacity:1}
+.auth-arrived .auth-login-card{opacity:1!important;visibility:visible;pointer-events:auto}
+.auth-reduced-motion .auth-login-card{transform:none!important;opacity:1!important;visibility:visible;pointer-events:auto}
+@media(max-width:680px){.auth-card{width:min(510px,calc(100vw - 34px))}}
+@media(prefers-reduced-motion:reduce){.auth-arrived .auth-login-card{animation:none!important}.auth-canopy-canvas{filter:none}}
+
+/* ---- Login card: one consistent size, exactly centred in the viewport, safe gutters, compact on short screens ----
+   The viewport is the only positioning reference (the ranger never moves the card). Later rules override the older
+   width/padding variants above. */
+.auth-login-screen{--card-gutter-x:clamp(16px,4vw,48px);--card-gutter-y:clamp(12px,3.4svh,40px)}
+.auth-scene-layout{padding:var(--card-gutter-y) var(--card-gutter-x)!important;place-items:center!important;align-items:center!important}
+.auth-card.auth-login-card{width:min(460px,100%);max-height:calc(100svh - 2 * var(--card-gutter-y));overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding:clamp(24px,2.6vw,34px) clamp(22px,2.8vw,36px);transform-origin:50% 50%}
+@media(max-height:860px){
+  .auth-card.auth-login-card{padding:26px 32px}
+  .auth-login-card .auth-emblem{width:36px;height:36px;margin-top:18px;border-radius:11px;font-size:19px}
+  .auth-login-card h1{margin:12px 0 5px;font-size:26px}
+  .auth-login-card .auth-lead{margin-bottom:16px}
+  .auth-login-card .auth-field{margin:11px 0;gap:6px}
+  .auth-login-card .auth-input-wrap{height:43px}
+  .auth-login-card .auth-form-options{margin:12px 0 13px}
+  .auth-login-card .auth-submit{min-height:44px}
+  .auth-login-card .auth-card-foot{margin-top:14px;padding-top:10px}
+  .auth-login-card .auth-registration-help{margin-top:8px}
+}
+@media(max-height:700px){
+  .auth-card.auth-login-card{padding:20px 28px}
+  .auth-login-card .auth-emblem{display:none}
+  .auth-login-card h1{margin:10px 0 4px;font-size:24px}
+  .auth-login-card .auth-lead{margin-bottom:12px}
+  .auth-login-card .auth-field{margin:9px 0}
+  .auth-login-card .auth-input-wrap{height:40px}
+  .auth-login-card .auth-form-options{margin:10px 0 11px}
+  .auth-login-card .auth-submit{min-height:42px}
+}
+@media(max-width:680px){.auth-card.auth-login-card{width:100%;padding:22px 20px}}
+@media(max-height:440px){
+  .auth-card.auth-login-card{padding:14px 24px}
+  .auth-login-card h1{margin:6px 0 6px;font-size:22px}
+  .auth-login-card .auth-lead{display:none}
+  .auth-login-card .auth-field{margin:7px 0;gap:4px}
+  .auth-login-card .auth-input-wrap{height:38px}
+  .auth-login-card .auth-form-options{margin:8px 0 9px}
+  .auth-login-card .auth-submit{min-height:40px}
+  .auth-login-card .auth-card-foot{display:none}
+  .auth-login-card .auth-registration-help{margin-top:8px}
+}
+/* The login card is ordinary page content: centred, visible and interactive from the first frame. The intro never
+   moves, hides, fades or scales it. */
+.auth-login-screen .auth-card.auth-login-card{opacity:1!important;visibility:visible!important;pointer-events:auto!important;transition:none;animation:none!important}
+.auth-login-card .auth-card-content{opacity:1;transition:none}
+/* Reduced motion shortens every transition to .01ms, and transition-property defaults to "all": without this the
+   page body would transition from the browser's default 8px margin when the dev server injects the stylesheet,
+   briefly adding a scrollbar that shifts the whole page. */
+@media(prefers-reduced-motion:reduce){html,body{transition:none!important}}
+
+/* ---- Premium forest card: glass surface, inner scrolling ---- */
+.auth-login-screen{--card-pad-y:clamp(26px,2.8vw,34px);--card-pad-x:clamp(24px,2.8vw,36px)}
+@media(max-height:860px){.auth-login-screen{--card-pad-y:24px;--card-pad-x:32px}}
+@media(max-height:700px){.auth-login-screen{--card-pad-y:20px;--card-pad-x:28px}}
+@media(max-width:680px){.auth-login-screen{--card-pad-y:22px;--card-pad-x:20px}}
+@media(max-height:440px){.auth-login-screen{--card-pad-y:14px;--card-pad-x:24px}}
+.auth-card.auth-login-card{overflow:visible;max-height:none;padding:var(--card-pad-y) var(--card-pad-x);border-radius:20px;
+  background:linear-gradient(155deg,rgba(28,70,50,.64),rgba(10,34,27,.72) 58%,rgba(7,26,21,.8));border:1px solid rgba(196,240,206,.2);
+  box-shadow:0 34px 90px rgba(1,8,4,.55),0 10px 28px rgba(1,10,5,.35),inset 0 1px 0 rgba(255,255,255,.13),inset 0 0 0 1px rgba(120,200,140,.05);
+  -webkit-backdrop-filter:blur(22px) saturate(1.35);backdrop-filter:blur(22px) saturate(1.35)}
+.auth-card.auth-login-card::before{content:"";position:absolute;inset:0;z-index:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(120% 55% at 18% 0%,rgba(168,232,140,.13),transparent 62%),radial-gradient(70% 45% at 100% 100%,rgba(90,180,120,.08),transparent 70%)}
+.auth-login-card .auth-card-content{position:relative;z-index:1;max-height:calc(100svh - 2 * var(--card-gutter-y) - 2 * var(--card-pad-y));
+  overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#5f8f6b33 transparent;margin:-4px -6px;padding:4px 6px}
+/* Typography and controls: larger, calmer type; visible focus for keyboard users. */
+.auth-login-card .auth-eyebrow{font-size:9.5px;letter-spacing:1.4px;color:#cfe2d0}
+.auth-login-card h1{letter-spacing:-.9px;color:#f5f9f3}
+.auth-login-card .auth-lead{font-size:12.5px;color:#a9bfae}
+.auth-login-card .auth-field{font-size:11px;letter-spacing:.2px;color:#d9e6db}
+.auth-login-card .auth-input-wrap{border-color:rgba(176,217,196,.2);background:rgba(4,20,15,.58);border-radius:10px}
+.auth-login-card .auth-input-wrap:hover{border-color:rgba(176,217,196,.34)}
+.auth-login-card .auth-input-wrap:focus-within{border-color:#9be3ad;box-shadow:0 0 0 3px rgba(110,206,132,.22);background:rgba(6,28,21,.72)}
+.auth-login-card .auth-input-wrap input{font-size:13px}
+.auth-login-card .auth-input-wrap input::placeholder{color:#7f9586}
+.auth-login-card .auth-remember,.auth-login-card .auth-forgot{font-size:11px!important}
+.auth-login-card .auth-submit{font-size:12.5px!important;border-radius:10px!important;letter-spacing:.2px}
+.auth-login-card button:focus-visible,.auth-login-card .auth-remember input:focus-visible{outline:2px solid #b6f08f;outline-offset:2px}
+.auth-login-card .auth-card-foot{border-top-color:rgba(255,255,255,.08)}
+/* Shorter screens: the decorative emblem tile gives its height to the space above the card, where the ranger lands
+   and sits. */
+@media(max-height:900px){.auth-login-card .auth-emblem{display:none}.auth-login-card h1{margin-top:16px}}
+
+/* ---- Login card, final design: forest glass ----
+   Translucent deep-green glass over the canopy (blurred, slightly darkened so text keeps strong contrast), a light-
+   catching gradient edge, a soft top sheen, layered shadows for depth. Warm-white type, emerald accents. No frame
+   around it: the forest shows round every edge. */
+.auth-login-screen{
+  --card-pad-x:clamp(26px,3vw,38px);
+  --card-pad-y:clamp(26px,3vw,36px);
+  --ink:#f4f1e6;
+  --ink-2:#c6d3c4;
+  --ink-3:#9fb3a2;
+  --emerald:#4dbb7f;
+  --emerald-hi:#7ed9a2;
+  --field:rgba(3,16,11,.56);
+}
+.auth-card.auth-login-card{
+  width:min(456px,100%);
+  border:0;
+  border-radius:24px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,0) 26%),
+    linear-gradient(152deg,rgba(24,62,45,.7) 0%,rgba(11,35,27,.77) 52%,rgba(6,24,18,.84) 100%);
+  box-shadow:
+    0 44px 90px -24px rgba(0,6,3,.72),
+    0 18px 38px -14px rgba(0,10,5,.5),
+    0 0 0 1px rgba(2,10,6,.32),
+    inset 0 1px 0 rgba(255,255,255,.14),
+    inset 0 0 46px rgba(130,200,150,.045);
+  -webkit-backdrop-filter:blur(26px) saturate(1.45) brightness(.9);
+  backdrop-filter:blur(26px) saturate(1.45) brightness(.9);
+}
+/* Soft sheen where the canopy light falls on the glass. */
+.auth-card.auth-login-card::before{
+  background:
+    radial-gradient(90% 46% at 14% -4%,rgba(196,240,190,.14),transparent 64%),
+    radial-gradient(60% 40% at 104% 104%,rgba(80,170,120,.08),transparent 70%);
+}
+/* A fine light-catching edge: brighter where the light comes from (top left), fading round the sides. */
+.auth-card.auth-login-card::after{
+  content:"";position:absolute;inset:0;z-index:0;border-radius:inherit;pointer-events:none;padding:1px;
+  background:linear-gradient(158deg,rgba(226,246,222,.5),rgba(206,236,210,.12) 34%,rgba(170,222,186,.08) 64%,rgba(150,214,170,.24));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+}
+.auth-login-card .auth-card-top{min-height:22px}
+.auth-login-card .auth-eyebrow{font-size:10px;letter-spacing:1.7px;color:#d2e2d1;font-weight:600}
+.auth-login-card .auth-eyebrow i{width:6px;height:6px;background:#86e0a6;box-shadow:0 0 0 3px rgba(134,224,166,.16),0 0 10px rgba(134,224,166,.7)}
+.auth-login-card .auth-encryption{padding:4px 9px;border:1px solid rgba(206,234,210,.16);border-radius:999px;background:rgba(255,255,255,.035);color:#aec4b1;font-size:9px;letter-spacing:.6px}
+.auth-login-card h1{margin:20px 0 8px;font-size:31px;font-weight:650;line-height:1.12;letter-spacing:-.9px;color:var(--ink);text-shadow:0 1px 18px rgba(0,0,0,.25)}
+.auth-login-card .auth-lead{margin:0 0 24px;font-size:13.5px;line-height:1.55;color:var(--ink-2)}
+.auth-login-card .auth-field{gap:8px;margin:16px 0;font-size:12px;font-weight:600;letter-spacing:.25px;color:#dfe8dd}
+.auth-login-card .auth-input-wrap{height:50px;padding:0 14px;gap:11px;border:1px solid rgba(206,232,210,.15);border-radius:12px;background:var(--field);
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.32),0 1px 0 rgba(255,255,255,.035);transition:border-color .18s,box-shadow .18s,background .18s}
+.auth-login-card .auth-input-wrap:hover{border-color:rgba(206,232,210,.26)}
+.auth-login-card .auth-input-wrap:focus-within{border-color:rgba(126,217,162,.85);background:rgba(4,20,14,.74);box-shadow:0 0 0 4px rgba(77,187,127,.17),inset 0 1px 2px rgba(0,0,0,.3)}
+.auth-login-card .auth-input-wrap>span{color:#8fbb9c;font-size:14px}
+.auth-login-card .auth-input-wrap input{font-size:14.5px;color:var(--ink)}
+.auth-login-card .auth-input-wrap input::placeholder{color:#90a494;opacity:1}
+.auth-login-card .auth-show-password{padding:5px 9px!important;border-radius:999px!important;font-size:11px!important;font-weight:600;color:#b8e2c1!important;transition:background .18s}
+.auth-login-card .auth-show-password:hover{background:rgba(255,255,255,.07)!important}
+.auth-login-card .auth-form-options{margin:18px 0 20px}
+.auth-login-card .auth-remember,.auth-login-card .auth-forgot{font-size:12px!important}
+.auth-login-card .auth-remember{color:#d0dcd0}
+.auth-login-card .auth-remember input{width:15px;height:15px;accent-color:var(--emerald)}
+.auth-login-card .auth-forgot{color:#a8dcb5!important;font-weight:600}
+.auth-login-card .auth-forgot:hover{color:#c9efd2!important;text-decoration:underline;text-underline-offset:3px}
+.auth-login-card .auth-submit{min-height:52px;padding:0 8px 0 18px!important;border:1px solid rgba(190,245,210,.55)!important;border-radius:12px!important;
+  background:linear-gradient(180deg,#86dea9 0%,#5cc58a 55%,#4ab57a 100%)!important;color:#05200f!important;font-size:13.5px!important;font-weight:700!important;letter-spacing:.15px;
+  box-shadow:0 12px 26px -10px rgba(64,190,120,.6),0 2px 6px rgba(0,20,10,.25),inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(0,60,30,.18);transition:filter .18s,transform .18s,box-shadow .18s}
+.auth-login-card .auth-submit>span:last-child{width:34px;height:34px;display:grid;place-items:center;border-radius:9px;background:rgba(5,32,15,.12);font-size:16px}
+.auth-login-card .auth-submit:hover:not(:disabled){filter:brightness(1.05);transform:translateY(-1px);box-shadow:0 16px 30px -10px rgba(64,190,120,.7),0 2px 6px rgba(0,20,10,.25),inset 0 1px 0 rgba(255,255,255,.6)}
+.auth-login-card .auth-submit:active:not(:disabled){transform:translateY(0);filter:brightness(.98)}
+.auth-login-card .auth-submit:disabled{opacity:.78;filter:saturate(.82) brightness(.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
+.auth-login-card .auth-submit:focus-visible,.auth-login-card .auth-show-password:focus-visible,.auth-login-card .auth-forgot:focus-visible,.auth-login-card .auth-connection button:focus-visible,.auth-login-card .auth-registration-help button:focus-visible,.auth-login-card .auth-remember input:focus-visible{outline:2px solid #b9f0c6;outline-offset:3px}
+.auth-login-card .auth-error,.auth-login-card .auth-info{padding:11px 13px;border-radius:11px;font-size:12px;line-height:1.5}
+.auth-login-card .auth-error{border-color:rgba(255,150,128,.38);background:rgba(78,24,20,.6);color:#ffdcd2}
+.auth-login-card .auth-info{border-color:rgba(150,220,170,.3);background:rgba(16,52,38,.62);color:#d4eed8}
+.auth-login-card .auth-card-foot{margin-top:20px;padding-top:14px;border-top:0;font-size:9.5px;letter-spacing:.4px;color:var(--ink-3);
+  background:linear-gradient(90deg,transparent,rgba(210,236,214,.16),transparent) top/100% 1px no-repeat}
+.auth-login-card .auth-card-foot b{color:#7fcf98}
+.auth-login-card .auth-registration-help{font-size:11.5px}
+.auth-login-card .auth-registration-help button{color:#b5dcbf!important}
+.auth-login-card .auth-registration-help button:hover{color:#d6f2dc!important}
+@media(max-height:860px){
+  .auth-login-screen{--card-pad-y:24px}
+  .auth-login-card h1{margin-top:14px;font-size:29px}
+  .auth-login-card .auth-lead{margin-bottom:16px}
+  .auth-login-card .auth-field{margin:11px 0;gap:7px}
+  .auth-login-card .auth-input-wrap{height:46px}
+  .auth-login-card .auth-form-options{margin:13px 0 15px}
+  .auth-login-card .auth-submit{min-height:47px}
+  .auth-login-card .auth-submit>span:last-child{width:31px;height:31px}
+  .auth-login-card .auth-card-foot{margin-top:14px;padding-top:11px}
+  .auth-login-card .auth-registration-help{margin-top:8px}
+}
+@media(max-height:780px){
+  .auth-login-screen{--card-pad-y:20px}
+  .auth-login-card h1{margin-top:11px;font-size:27px}
+  .auth-login-card .auth-lead{margin-bottom:13px;font-size:13px}
+  .auth-login-card .auth-field{margin:9px 0;gap:6px}
+  .auth-login-card .auth-input-wrap{height:44px}
+  .auth-login-card .auth-form-options{margin:11px 0 12px}
+  .auth-login-card .auth-submit{min-height:45px}
+  .auth-login-card .auth-submit>span:last-child{width:30px;height:30px}
+  .auth-login-card .auth-card-foot{margin-top:11px;padding-top:9px}
+  .auth-login-card .auth-registration-help{margin-top:6px}
+}
+@media(max-height:700px){
+  .auth-login-screen{--card-pad-y:16px}
+  .auth-login-card h1{font-size:25px;margin-top:9px}
+  .auth-login-card .auth-lead{margin-bottom:11px;font-size:12.5px}
+  .auth-login-card .auth-field{margin:8px 0;gap:5px}
+  .auth-login-card .auth-input-wrap{height:42px}
+  .auth-login-card .auth-form-options{margin:9px 0 10px}
+  .auth-login-card .auth-submit{min-height:43px}
+  .auth-login-card .auth-card-foot{margin-top:9px;padding-top:8px}
+}
+@media(max-width:680px){
+  .auth-login-screen{--card-pad-x:20px;--card-pad-y:22px}
+  .auth-card.auth-login-card{width:100%;border-radius:20px}
+  .auth-login-card h1{font-size:28px}
+  .auth-login-card .auth-lead{font-size:12.5px;margin-bottom:18px}
+  .auth-login-card .auth-field{margin:12px 0}
+}
+/* While the rope tows the card to the centre the browser keeps it on its own layer. */
+.auth-login-card.auth-card-towed{will-change:transform}
+.auth-reduced-motion .auth-login-card.auth-login-card{transform:none!important}
+@media(prefers-reduced-motion:reduce){
+  .auth-login-card .auth-submit,.auth-login-card .auth-input-wrap{transition:none}
+  .auth-login-card.auth-login-card{transform:none!important}
+}
+/* The security badge sits with the other connection details at the foot of the card (the top edge stays clear for the
+   ranger's seat). */
+.auth-login-card .auth-card-foot{flex-wrap:wrap;row-gap:6px}
+.auth-login-card .auth-card-foot .auth-encryption{margin-left:4px}
+/* The top edge is where the ranger sits: a clean, straight line of light along it. */
+.auth-card.auth-login-card{box-shadow:0 44px 90px -24px rgba(0,6,3,.72),0 18px 38px -14px rgba(0,10,5,.5),0 0 0 1px rgba(2,10,6,.32),inset 0 1px 0 rgba(236,250,232,.22),inset 0 0 46px rgba(130,200,150,.045)}
+/* After sign-in, the arrival transition keeps its timing (its end closes the overlay) but no longer shows the older
+   painted ranger: the login scene's 3D ranger is the only character. */
+.auth-flight-transition .auth-transition-officer{opacity:0!important}
+/* Opening: the forest alone, with the ZOVIVE mark quietly in the corner (the card is still outside the screen). */
+.auth-warming .auth-brand{visibility:visible!important;opacity:.72!important;transition:opacity .8s ease}
+.auth-arrived .auth-brand{transition:opacity .8s ease}
